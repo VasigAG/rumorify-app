@@ -1,0 +1,104 @@
+/* src/components/UserProfile.css */
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* User Profile */
+.user-profile {
+  padding: 20px;
+  background-color: #14171a; /* Twitter Dark Blue background */
+  color: #e1e8ed; /* Light text for readability */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  font-family: 'Fira Code', monospace; /* Monospace font for consistent styling */
+}
+
+/* Profile Title */
+.user-profile h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #1da1f2; /* Twitter Blue for titles */
+}
+
+/* Tea Score */
+.user-profile p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #e1e8ed; /* Light text for readability */
+}
+
+/* Leaderboard Section */
+.leaderboard-section {
+  margin-top: 20px;
+}
+
+.leaderboard-section h2 {
+  font-size: 1.5rem;
+  color: #1da1f2; /* Twitter Blue */
+  margin-bottom: 10px;
+}
+
+/* Leaderboard List */
+.leaderboard-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.leaderboard-item {
+  background-color: #222; /* Slightly lighter black for contrast */
+  border: 1px solid #1da1f2; /* Twitter Blue border */
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.leaderboard-rank {
+  color: #1da1f2; /* Twitter Blue */
+  font-weight: bold;
+}
+
+.leaderboard-name {
+  color: #e1e8ed; /* Light text for readability */
+}
+
+.leaderboard-score {
+  color: #f5a623; /* Warm orange for emphasis */
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .user-profile {
+    padding: 10px;
+  }
+
+  .user-profile h1 {
+    font-size: 1.5rem;
+  }
+
+  .user-profile p {
+    font-size: 1rem;
+  }
+
+  .leaderboard-section h2 {
+    font-size: 1.2rem;
+  }
+
+  .leaderboard-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .leaderboard-rank, .leaderboard-name, .leaderboard-score {
+    font-size: 0.875rem;
+  }
+}

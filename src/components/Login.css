@@ -1,0 +1,88 @@
+/* src/components/Login.css */
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Login Container */
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #14171a; /* Dark background similar to Twitter's dark mode */
+  color: #e1e8ed; /* Light text color for better readability */
+  font-family: 'Fira Code', monospace; /* Monospace font for consistency */
+  padding: 20px; /* Space around the container */
+}
+
+/* Welcome Message */
+.login h1 {
+  font-size: 2rem;
+  margin-bottom: 30px; /* Space below the welcome message */
+  color: #1da1f2; /* Twitter Blue */
+  text-align: center;
+}
+
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #1b2631; /* Slightly lighter dark mode background */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+input {
+  margin-bottom: 20px; /* Space between text boxes */
+  padding: 12px;
+  border: 2px solid #1da1f2; /* Twitter Blue border */
+  border-radius: 4px;
+  background-color: #14171a; /* Dark background for inputs */
+  color: #e1e8ed; /* Light text for inputs */
+  font-size: 1rem;
+}
+
+button {
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #1da1f2; /* Twitter Blue button background */
+  color: #fff; /* White text */
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 15px; /* Space between buttons */
+}
+
+button:hover {
+  background-color: #0d95e8; /* Slightly darker Twitter Blue */
+}
+
+/* Error Message Styling */
+.error-message {
+  color: #e0245e; /* Neon red for error messages */
+  margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .login h1 {
+    font-size: 1.5rem; /* Adjust font size for smaller screens */
+  }
+
+  input {
+    font-size: 0.9rem; /* Slightly smaller text for inputs on smaller screens */
+  }
+
+  button {
+    font-size: 0.9rem; /* Slightly smaller text for buttons on smaller screens */
+  }
+}

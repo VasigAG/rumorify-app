@@ -1,0 +1,95 @@
+/* src/components/OrganizationHandling.css */
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Organization Handling Component */
+.organization-handling {
+  padding: 20px;
+  background-color: #14171a; /* Twitter Dark Blue background */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  color: #e1e8ed; /* Light text for readability */
+  font-family: 'Fira Code', monospace; /* Monospace font for consistent styling */
+}
+
+/* Section and Subsection Titles */
+.section-title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #1da1f2; /* Twitter Blue */
+  margin-bottom: 20px;
+}
+
+.subsection-title {
+  color: #657786; /* Muted gray for subsections */
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+/* Select and Input Styling */
+.organization-select, .organization-add {
+  margin-bottom: 20px;
+}
+
+.organization-select-box, .organization-input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #1da1f2; /* Twitter Blue border */
+  background-color: #222; /* Slightly lighter black */
+  color: #e1e8ed; /* Light text for readability */
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+/* Button Styling */
+.btn {
+  background-color: #1da1f2; /* Twitter Blue */
+  color: #fff; /* White text */
+  border: 2px solid #1da1f2; /* Matching border */
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #0d95e8; /* Darker Twitter Blue */
+  color: #fff; /* White text on hover */
+  border-color: #0d95e8; /* Matching border color on hover */
+}
+
+/* Error Message Styling */
+.error-message {
+  color: #f5a623; /* Warm orange for error messages */
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .subsection-title {
+    font-size: 1.2rem;
+  }
+
+  .organization-select-box, .organization-input {
+    font-size: 0.875rem;
+  }
+
+  .btn {
+    font-size: 0.875rem;
+  }
+}

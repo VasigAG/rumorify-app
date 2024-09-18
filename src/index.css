@@ -1,0 +1,33 @@
+/* src/index.css */
+body {
+  background-color: #121212;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+}
+
+input, textarea, select {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border: 1px solid #333;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+button {
+  background-color: #6200ea;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3700b3;
+}
+
+.rumor-item {
+  background-color: #1f1f1f;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 5px;
+}

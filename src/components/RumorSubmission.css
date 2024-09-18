@@ -1,0 +1,40 @@
+/* Rumor Submission Form */
+.rumor-submission-form {
+    background-color: #2b2d2f; /* Match background with rumor items */
+    border: 1px solid #1da1f2; /* Twitter Blue border */
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px; /* Space below the submission form */
+    width: 100%; /* Full width of parent */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align the contents */
+  }
+  
+  /* Textarea */
+  .rumor-textarea {
+    width: 100%; /* Full width of the form */
+    padding: 10px;
+    border: 2px solid #1da1f2; /* Twitter Blue border */
+    background-color: #2b2d2f; /* Darker grey background */
+    color: #e1e8ed; /* Light grey text */
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    resize: none; /* Disable resizing */
+    height: 40px; /* Decrease height for a more horizontal look */
+  }
+  
+  /* Buttons */
+  .btn, .btn-submit {
+    background-color: #1da1f2; /* Twitter Blue */
+    color: #fff; /* White text */
+    border: 2px solid #1da1f2; /* Matching border */
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    margin-top: 10px; /* Space between textarea and button */
+  }
+  

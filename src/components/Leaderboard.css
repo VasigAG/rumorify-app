@@ -1,0 +1,104 @@
+/* src/components/Leaderboard.css */
+
+/* Overall container styling */
+.leaderboard {
+    padding: 20px;
+    background-color: #1f1f1f; /* Dark background for the container */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    color: #e1e8ed; /* Light text color for readability */
+    font-family: 'Courier New', Courier, monospace; /* Monospace font */
+    max-width: 100%;
+    margin: auto;
+  }
+  
+  /* Heading styling */
+  .leaderboard h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #1da1f2; /* Accent color for the heading */
+    text-align: center;
+  }
+  
+  /* List styling */
+  .leaderboard-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  /* List item styling */
+  .leaderboard-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #333; /* Slightly lighter dark border */
+  }
+  
+  /* Rank styling */
+  .leaderboard-rank {
+    width: 60px; /* Fixed width for rank */
+    text-align: center;
+    font-weight: bold;
+    color: #e1e8ed; /* Light text color */
+  }
+  
+  /* Name styling */
+  .leaderboard-name {
+    flex: 1;
+    font-size: 16px;
+    color: #e1e8ed; /* Light text color */
+  }
+  
+  /* Tea score styling */
+  .leaderboard-teascore {
+    font-size: 16px;
+    color: #aab8c2; /* Slightly muted light color */
+  }
+  
+  /* User rank box styling */
+  .user-rank {
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1da1f2; /* Accent color for user rank */
+    background-color: #333; /* Dark background for the rank box */
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  /* Responsive styling */
+  @media (max-width: 600px) {
+    .leaderboard {
+      padding: 15px;
+    }
+  
+    .leaderboard h2 {
+      font-size: 20px;
+    }
+  
+    .leaderboard-item {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px 0;
+    }
+  
+    .leaderboard-rank {
+      width: auto; /* Flexible width on smaller screens */
+      text-align: left;
+      margin-bottom: 5px; /* Add space between rank and name */
+    }
+  
+    .leaderboard-name {
+      font-size: 14px;
+    }
+  
+    .leaderboard-teascore {
+      font-size: 14px;
+    }
+  
+    .user-rank {
+      font-size: 16px;
+    }
+  }
+  
