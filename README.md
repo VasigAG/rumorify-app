@@ -1,3 +1,5 @@
+🚀 rumorify is a llm-driven idea-focused rumor platform for schools/uni with anonymous sharing, buzz scores, chain stats, and leaderboards
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
