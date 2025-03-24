@@ -1,4 +1,4 @@
-🚀 rumorify is a llm-driven idea-focused rumor platform for schools/uni with anonymous sharing, buzz scores, chain stats, and leaderboards.
+🚀 Rumorify is a llm-driven idea-focused rumor platform for schools/uni with anonymous sharing, buzz scores, chain stats, and leaderboards.
 
 ### The website:
 https://try-rumor.web.app/
