@@ -4,10 +4,11 @@ import { auth } from '../firebase';
 import { fetchUserProfile, fetchRumors } from './FirebaseService';
 import RumorSubmission from './RumorSubmission';
 import RumorList from './RumorList';
-import MobileNavigation from './MobileNavigation';
+import TopNavigation from './TopNavigation';
 import UserProfile from './UserProfile';
 import Leaderboard from './Leaderboard';
 import GuessTheBuzz from './GuessTheBuzz';
+import MenuPage from './MenuPage';
 import './Dashboard.css';
 
 function Dashboard() {
@@ -73,7 +74,7 @@ function Dashboard() {
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
 
-    const tabs = ['feed', 'post', 'game', 'leaderboard', 'profile'];
+    const tabs = ['feed', 'post', 'menu'];
     const currentIndex = tabs.indexOf(activeTab);
 
     if (isLeftSwipe && currentIndex < tabs.length - 1) {
@@ -90,6 +91,7 @@ function Dashboard() {
         return (
           <RumorList
             rumors={rumors}
+            setRumors={setRumors}
             selectedOrg={selectedOrg}
             summaries={summaries}
             setSummaries={setSummaries}
@@ -105,13 +107,15 @@ function Dashboard() {
             setSummaries={setSummaries}
           />
         );
+      case 'menu':
+        return <MenuPage setActiveTab={setActiveTab} />;
       case 'game':
         return <GuessTheBuzz />;
       case 'leaderboard':
         return (
           <Leaderboard
             currentUserId={auth.currentUser?.uid}
-            onClose={() => setActiveTab('feed')}
+            onClose={() => setActiveTab('menu')}
           />
         );
       case 'profile':
@@ -120,6 +124,7 @@ function Dashboard() {
         return (
           <RumorList
             rumors={rumors}
+            setRumors={setRumors}
             selectedOrg={selectedOrg}
             summaries={summaries}
             setSummaries={setSummaries}
@@ -136,15 +141,15 @@ function Dashboard() {
       onTouchEnd={onTouchEnd}
     >
       <header className="dashboard-header">
-        <h2>Rumorify</h2>
+        <div className="logo-r">R</div>
         <button className="logout-btn" onClick={handleLogout}>Logout</button>
       </header>
+
+      <TopNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
 
       <div className="content-area">
         {renderContent()}
       </div>
-
-      <MobileNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
     </div>
   );
 }

@@ -1,17 +1,18 @@
 // src/components/SummaryGenerator.js
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenAI } from "@google/genai";
 
 export const generateSummary = async (referenceId, rumor) => {
-  const apiKey = localStorage.getItem('gemini_api_key');
+  // Use REACT_APP_GEMINI_API_KEY from environment, or check localStorage if present (for user flexibility)
+  const apiKey = process.env.REACT_APP_GEMINI_API_KEY || localStorage.getItem('gemini_api_key');
+
   if (!apiKey) {
     return rumor.content.substring(0, 50) + "..."; // Fallback to truncated content if no API key
   }
-  const genAI = new GoogleGenerativeAI(apiKey);
+
+  const ai = new GoogleGenAI(apiKey);
 
   const maxRetries = 4; // Number of retries before giving up
   const retryDelay = 2000; // Delay between retries in milliseconds
-
-  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
   const allRumorTexts = [
     rumor.content,
@@ -31,10 +32,12 @@ export const generateSummary = async (referenceId, rumor) => {
   let attempt = 0;
   while (attempt < maxRetries) {
     try {
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      const summaryText = await response.text();
-      return summaryText.trim() || "Unable to generate a summary from the available content.";
+      // Use the new SDK method
+      const response = await ai.models.generateContent({
+        model: "gemini-1.5-flash", // Using gemini-1.5-flash as the "flash" model, since gemini-3 is not standard yet or might be gemini-1.5-flash-latest
+        contents: prompt,
+      });
+      return response.text().trim() || "Unable to generate a summary.";
     } catch (error) {
       console.error(`Attempt ${attempt + 1} failed:`, error);
       attempt += 1;

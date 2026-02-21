@@ -64,7 +64,9 @@ function Login() {
 
   return (
     <div className="login">
-      <h1>Welcome to Rumorify. Spill Tea.</h1>
+      {/* Replaced Logo with Big R */}
+      <div className="logo-r-login">R</div>
+      <h1 className="login-title">Rumorify</h1>
       <h2>{isSignUp ? 'Sign Up' : 'Login'}</h2>
       <form onSubmit={handleAuth}>
         <input
