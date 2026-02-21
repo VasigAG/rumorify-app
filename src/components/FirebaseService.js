@@ -25,6 +25,10 @@ export const fetchRumors = async (selectedOrg) => {
           existingRumor.variations.push(rumor);
         } else {
           existingRumor.similarSubmissions.push(rumor);
+          // If this is the main rumor (or has chain info), update the existing entry
+          if (rumor.chainStreak) existingRumor.chainStreak = rumor.chainStreak;
+          if (rumor.chain) existingRumor.chain = rumor.chain;
+          if (rumor.isConfirmed) existingRumor.isConfirmed = true;
         }
         existingRumor.buzzScore += rumor.buzzScore || 0;
       } else {
@@ -33,7 +37,9 @@ export const fetchRumors = async (selectedOrg) => {
           id: rumorId,
           buzzScore: rumor.buzzScore || 0,
           variations: rumor.isVariation ? [rumor] : [],
-          similarSubmissions: !rumor.isVariation ? [rumor] : []
+          similarSubmissions: !rumor.isVariation ? [rumor] : [],
+          chainStreak: rumor.chainStreak || 1,
+          chain: rumor.chain || []
         });
       }
     });
@@ -44,9 +50,28 @@ export const fetchRumors = async (selectedOrg) => {
   }
 };
 
+export const confirmRumor = async (rumorId) => {
+  try {
+    const rumorRef = doc(db, 'rumors', rumorId);
+    await updateDoc(rumorRef, { isConfirmed: true });
+  } catch (error) {
+    console.error("Error confirming rumor:", error);
+    throw error;
+  }
+};
+
 export const addNewRumor = async (newRumor) => {
   try {
-    return await addDoc(collection(db, 'rumors'), newRumor);
+    const rumorToAdd = { ...newRumor };
+    if (!rumorToAdd.isVariation) {
+        rumorToAdd.chainStreak = 1;
+        rumorToAdd.chain = [{
+            user: rumorToAdd.submittedBy,
+            heardFrom: rumorToAdd.heardFrom || null,
+            timestamp: rumorToAdd.timestamp
+        }];
+    }
+    return await addDoc(collection(db, 'rumors'), rumorToAdd);
   } catch (error) {
     console.error("Error adding new rumor:", error);
     throw error;
@@ -61,9 +86,19 @@ export const updateExistingRumor = async (existingRumorId, newRumor) => {
       const existingRumorData = existingRumorDoc.data();
       const updatedVariations = [...(existingRumorData.variations || []), newRumor];
       const updatedBuzzScore = (existingRumorData.buzzScore || 0) + 1;
+
+      const updatedChainStreak = (existingRumorData.chainStreak || 1) + 1;
+      const updatedChain = [...(existingRumorData.chain || []), {
+          user: newRumor.submittedBy,
+          heardFrom: newRumor.heardFrom || null,
+          timestamp: newRumor.timestamp
+      }];
+
       await updateDoc(existingRumorRef, {
         variations: updatedVariations,
         buzzScore: updatedBuzzScore,
+        chainStreak: updatedChainStreak,
+        chain: updatedChain
       });
     } else {
       throw new Error(`Rumor with ID ${existingRumorId} does not exist.`);

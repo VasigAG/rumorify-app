@@ -12,6 +12,12 @@ const UserProfile = () => {
   const [isAnonymous, setIsAnonymous] = useState(false);
   const [newUsername, setNewUsername] = useState('');
   const [error, setError] = useState('');
+  const [apiKey, setApiKey] = useState('');
+
+  useEffect(() => {
+    const storedKey = localStorage.getItem('gemini_api_key');
+    if (storedKey) setApiKey(storedKey);
+  }, []);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
@@ -67,6 +73,12 @@ const UserProfile = () => {
     }
   };
 
+  const handleApiKeyChange = (e) => {
+    e.preventDefault();
+    localStorage.setItem('gemini_api_key', apiKey);
+    alert('API Key saved locally!');
+  };
+
   if (loading) {
     return <div className="user-profile">Loading...</div>;
   }
@@ -91,6 +103,17 @@ const UserProfile = () => {
             <button type="submit" className="btn">Change Username</button>
           </form>
           {error && <p className="error-message">{error}</p>}
+
+          <form onSubmit={handleApiKeyChange} className="api-key-form">
+            <p>Gemini API Key (saved locally):</p>
+            <input
+              type="password"
+              placeholder="Enter Gemini API Key"
+              value={apiKey}
+              onChange={(e) => setApiKey(e.target.value)}
+            />
+            <button type="submit" className="btn">Save API Key</button>
+          </form>
         </>
       )}
 
@@ -109,8 +132,6 @@ const UserProfile = () => {
           onClose={handleCloseLeaderboard}
         />
       )}
-
-      <button className="btn back-button" onClick={() => window.history.back()}>Back to Dashboard</button>
     </div>
   );
 };

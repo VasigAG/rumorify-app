@@ -1,9 +1,10 @@
 // src/components/SummaryGenerator.js
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const genAI = new GoogleGenerativeAI('AIzaSyAznIKpJEmZ9ru36Vyg4WkAycaFcl0Yyos');
-
 export const generateSummary = async (referenceId, rumor) => {
+  const apiKey = localStorage.getItem('gemini_api_key') || 'AIzaSyAznIKpJEmZ9ru36Vyg4WkAycaFcl0Yyos';
+  const genAI = new GoogleGenerativeAI(apiKey);
+
   const maxRetries = 4; // Number of retries before giving up
   const retryDelay = 2000; // Delay between retries in milliseconds
 

@@ -20,19 +20,10 @@ const Leaderboard = ({ currentUserId, onClose }) => {
         // Filter out users without a username
         const validUsers = usersData.filter(user => user.username);
 
-        // Calculate teaScores for each valid user
-        const leaderboardData = await Promise.all(validUsers.map(async (user) => {
-          const rumorsQuery = query(collection(db, 'rumors'), where('submittedBy', '==', user.id));
-          const rumorsSnapshot = await getDocs(rumorsQuery);
-          const userRumors = rumorsSnapshot.docs.map(doc => doc.data());
-
-          // Calculate teaScore as the sum of buzz scores
-          const teaScore = userRumors.reduce((total, rumor) => total + (rumor.buzzScore || 0), 0);
-
-          return {
-            ...user,
-            teaScore
-          };
+        // Use teaScore from user document
+        const leaderboardData = validUsers.map(user => ({
+          ...user,
+          teaScore: user.teaScore || 0
         }));
 
         // Sort leaderboard by teaScore in descending order
@@ -63,7 +54,9 @@ const Leaderboard = ({ currentUserId, onClose }) => {
         <ul className="leaderboard-list">
           {leaderboard.map((entry, index) => (
             <li key={entry.id} className="leaderboard-item">
-              <span className="leaderboard-rank">{index + 1}</span>
+              <span className="leaderboard-rank">
+                {index === 0 ? '👑 Drama King/Queen' : index + 1}
+              </span>
               <span className="leaderboard-name">{entry.username}</span>
               <span className="leaderboard-teascore">Tea Score: {entry.teaScore || 0}</span>
             </li>
