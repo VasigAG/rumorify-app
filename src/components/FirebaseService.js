@@ -175,7 +175,7 @@ export const deleteOrganization = async (orgId) => {
 
 export const fetchUserSubmissions = async (userId) => {
   try {
-    const q = query(collection(db, 'rumors'), where('userId', '==', userId));
+    const q = query(collection(db, 'rumors'), where('submittedBy', '==', userId));
     const querySnapshot = await getDocs(q);
     return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   } catch (error) {

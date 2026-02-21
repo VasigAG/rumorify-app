@@ -2,7 +2,10 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export const generateSummary = async (referenceId, rumor) => {
-  const apiKey = localStorage.getItem('gemini_api_key') || 'AIzaSyAznIKpJEmZ9ru36Vyg4WkAycaFcl0Yyos';
+  const apiKey = localStorage.getItem('gemini_api_key');
+  if (!apiKey) {
+    return rumor.content.substring(0, 50) + "..."; // Fallback to truncated content if no API key
+  }
   const genAI = new GoogleGenerativeAI(apiKey);
 
   const maxRetries = 4; // Number of retries before giving up
