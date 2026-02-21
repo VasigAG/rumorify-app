@@ -1,0 +1,53 @@
+.guess-the-buzz {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #2b2d2f;
+  border-radius: 8px;
+  color: #fff;
+  min-height: 300px;
+}
+
+.candidates-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.candidate-card {
+  background-color: #1c1e21;
+  border: 1px solid #1da1f2;
+  color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-align: left;
+}
+
+.candidate-card:hover {
+  background-color: #1da1f2;
+  color: #fff;
+}
+
+.result {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.result.win {
+  color: #17bf63;
+}
+
+.result.loss {
+  color: #e0245e;
+}
+
+.game-message {
+  font-size: 1.2rem;
+  color: #8899a6;
+}

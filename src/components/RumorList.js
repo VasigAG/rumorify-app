@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { generateSummary } from './SummaryGenerator'; // Ensure the path is correct
+import { confirmRumor } from './FirebaseService';
 import './RumorList.css'; // Ensure this is included at the top of your component file
 
 function RumorList({ rumors, selectedOrg, summaries, setSummaries }) {
@@ -48,8 +49,26 @@ function RumorList({ rumors, selectedOrg, summaries, setSummaries }) {
     setExpandedRumor(null);
   };
 
-  // Sort rumors by buzzScore in descending order
-  const sortedRumors = [...rumors].sort((a, b) => b.buzzScore - a.buzzScore);
+  const handleConfirm = async (rumorId) => {
+    if (window.confirm("Are you sure you want to confirm this rumor as the subject?")) {
+      try {
+        await confirmRumor(rumorId);
+        window.location.reload();
+      } catch (error) {
+        console.error("Error confirming rumor:", error);
+      }
+    }
+  };
+
+  // Sort rumors by chainStreak (desc) then buzzScore (desc)
+  const sortedRumors = [...rumors].sort((a, b) => {
+    const streakA = a.chainStreak || 0;
+    const streakB = b.chainStreak || 0;
+    if (streakB !== streakA) {
+      return streakB - streakA;
+    }
+    return (b.buzzScore || 0) - (a.buzzScore || 0);
+  });
 
   // Determine the total pages
   const totalPages = Math.ceil(sortedRumors.length / itemsPerPage);
@@ -84,7 +103,10 @@ function RumorList({ rumors, selectedOrg, summaries, setSummaries }) {
               </div>
 
               {/* Move buzz score here */}
-              <span className="buzz-score">Buzz Score: {rumor.buzzScore} 🔥</span>
+              <div className="rumor-stats">
+                <span className="buzz-score">Buzz Score: {rumor.buzzScore} 🔥</span>
+                <span className="chain-streak">Chain Streak: {rumor.chainStreak || 1} 🔗</span>
+              </div>
 
               {expandedRumor === rumor.referenceId && (
                 <div className="rumor-variations">
@@ -118,6 +140,28 @@ function RumorList({ rumors, selectedOrg, summaries, setSummaries }) {
                   </ul>
                 </div>
               )}
+
+              <div className="confirmation-section">
+                {rumor.isConfirmed ? (
+                  <div className="chain-stats">
+                    <h4 className="confirmed-title">✅ Confirmed! Chain Stats:</h4>
+                    <ul className="chain-list">
+                      {rumor.chain?.map((link, i) => (
+                        <li key={i}>
+                          <span className="chain-link">
+                            Link {i + 1}: Heard from "{link.heardFrom || 'Unknown'}"
+                            {link.timestamp?.seconds && ` on ${new Date(link.timestamp.seconds * 1000).toLocaleDateString()}`}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <button className="btn btn-confirm" onClick={() => handleConfirm(rumor.id)}>
+                    Confirm Rumor (I am the subject)
+                  </button>
+                )}
+              </div>
             </li>
           ))
         ) : (

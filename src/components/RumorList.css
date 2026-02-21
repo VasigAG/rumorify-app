@@ -150,6 +150,70 @@ body {
   color: #657786; /* Grey */
 }
 
+/* Rumor Stats */
+.rumor-stats {
+  margin-top: 10px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.chain-streak {
+  margin-left: 15px;
+  color: #17bf63; /* Greenish for streak */
+}
+
+/* Confirmation Section */
+.confirmation-section {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px dashed #333;
+}
+
+.chain-stats {
+  background-color: #2e3033;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #17bf63; /* Green border for confirmed */
+}
+
+.confirmed-title {
+  color: #17bf63;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.chain-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.chain-list li {
+  margin-bottom: 5px;
+  padding: 5px;
+  background-color: rgba(23, 191, 99, 0.1);
+  border-radius: 4px;
+}
+
+.chain-link {
+  color: #e1e8ed;
+  font-size: 0.95rem;
+}
+
+.btn-confirm {
+  background-color: #2b2d2f;
+  color: #8899a6;
+  border: 1px solid #8899a6;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+.btn-confirm:hover {
+  background-color: rgba(23, 191, 99, 0.1);
+  color: #17bf63;
+  border-color: #17bf63;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 600px) {
   .dashboard {

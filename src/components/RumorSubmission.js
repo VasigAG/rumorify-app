@@ -8,6 +8,7 @@ import './RumorSubmission.css';
 
 function RumorSubmission({ userProfile, selectedOrg, rumors, setRumors, setSummaries }) {
   const [newRumorContent, setNewRumorContent] = useState('');
+  const [heardFrom, setHeardFrom] = useState('');
 
   const handleSubmitRumor = async (e) => {
     e.preventDefault();
@@ -28,7 +29,8 @@ function RumorSubmission({ userProfile, selectedOrg, rumors, setRumors, setSumma
         isVariation: type !== 'new',
         referenceId: referenceId,
         buzzScore: 1,
-        variationType: type
+        variationType: type,
+        heardFrom: heardFrom || null
       };
 
       // Add new rumor to Firestore
@@ -43,6 +45,7 @@ function RumorSubmission({ userProfile, selectedOrg, rumors, setRumors, setSumma
       await updateUserTeaScore(auth.currentUser.uid);
 
       setNewRumorContent('');
+      setHeardFrom('');
 
       // Fetch updated rumors and update state
       const updatedRumors = await fetchRumors(selectedOrg);
@@ -65,6 +68,13 @@ function RumorSubmission({ userProfile, selectedOrg, rumors, setRumors, setSumma
           placeholder="What's the Tea!?"
           value={newRumorContent}
           onChange={(e) => setNewRumorContent(e.target.value)}
+        />
+        <input
+          type="text"
+          className="rumor-input-heard"
+          placeholder="Heard from? (Optional)"
+          value={heardFrom}
+          onChange={(e) => setHeardFrom(e.target.value)}
         />
         <button className="btn-submit" type="submit">Submit rumor</button>
       </form>
