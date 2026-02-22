@@ -1,17 +1,15 @@
 import React from 'react';
-import './MobileNavigation.css';
+import './TopNavigation.css';
 
-const MobileNavigation = ({ activeTab, setActiveTab }) => {
+const TopNavigation = ({ activeTab, setActiveTab }) => {
   const tabs = [
     { id: 'feed', label: 'Feed', icon: '📰' },
     { id: 'post', label: 'Post', icon: '✍️' },
-    { id: 'game', label: 'Game', icon: '🎲' },
-    { id: 'leaderboard', label: 'Rank', icon: '🏆' },
-    { id: 'profile', label: 'Profile', icon: '👤' },
+    { id: 'menu', label: 'Menu', icon: '☰' }, // Replaces Post/Game/Profile
   ];
 
   return (
-    <nav className="mobile-nav">
+    <nav className="top-nav">
       {tabs.map((tab) => (
         <button
           key={tab.id}
@@ -26,4 +24,4 @@ const MobileNavigation = ({ activeTab, setActiveTab }) => {
   );
 };
 
-export default MobileNavigation;
+export default TopNavigation;

@@ -1,33 +1,29 @@
-/* src/index.css */
 body {
-  background-color: #121212;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #000000; /* Pure black bg */
+  color: #e0e0e0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.logo-r {
+  font-size: 32px;
+  font-weight: 900;
   color: #ffffff;
-  font-family: 'Arial', sans-serif;
-}
-
-input, textarea, select {
-  background-color: #1e1e1e;
-  color: #ffffff;
-  border: 1px solid #333;
-  padding: 10px;
-  margin: 10px 0;
-}
-
-button {
-  background-color: #6200ea;
-  color: white;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #3700b3;
-}
-
-.rumor-item {
-  background-color: #1f1f1f;
-  padding: 15px;
-  margin: 10px 0;
+  font-family: 'Arial Black', sans-serif;
+  border: 2px solid #ffffff;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 5px;
 }

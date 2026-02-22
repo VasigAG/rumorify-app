@@ -3,7 +3,7 @@ import { generateSummary } from './SummaryGenerator'; // Ensure the path is corr
 import { confirmRumor } from './FirebaseService';
 import './RumorList.css'; // Ensure this is included at the top of your component file
 
-function RumorList({ rumors, selectedOrg, summaries, setSummaries }) {
+function RumorList({ rumors, selectedOrg, summaries, setSummaries, setRumors }) {
   const [expandedRumor, setExpandedRumor] = useState(null);
   const [showAllSubmissions, setShowAllSubmissions] = useState(null);
   const [errorMessages, setErrorMessages] = useState({}); // Track errors
@@ -53,7 +53,14 @@ function RumorList({ rumors, selectedOrg, summaries, setSummaries }) {
     if (window.confirm("Are you sure you want to confirm this rumor as the subject?")) {
       try {
         await confirmRumor(rumorId);
-        window.location.reload();
+        if (setRumors) {
+          setRumors(prevRumors => prevRumors.map(r => {
+            if (r.id === rumorId) {
+              return { ...r, isConfirmed: true };
+            }
+            return r;
+          }));
+        }
       } catch (error) {
         console.error("Error confirming rumor:", error);
       }

@@ -1,40 +1,33 @@
 /* src/components/Header.css */
 
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #14171a; /* Dark background for header */
-    padding: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  }
-  
-  .logo-link {
-    display: flex;
-    align-items: center;
-    margin-right: 15px; /* Space between logo and title */
-  }
-  
-  .logo {
-    height: 120px; /* Adjust as needed */
-    margin-right: 10px; /* Space between logo and title */
-  }
-  
-  .site-title {
-    font-size: 1.8rem;
-    color: #1da1f2; /* Twitter Blue or your preferred color */
-    font-family: 'Fira Code', monospace; /* Monospace font for consistency */
-    margin: 0; /* Remove default margin */
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 600px) {
-    .site-title {
-      font-size: 1.4rem;
-    }
-  
-    .logo {
-      height: 100px; /* Adjust as needed */
-    }
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #000000;
+  border-bottom: 1px solid #333333;
+}
+
+.logo-link {
+  text-decoration: none;
+}
+
+.logo-r-header {
+  font-size: 32px;
+  font-weight: 900;
+  color: #ffffff;
+  font-family: 'Arial Black', sans-serif;
+  border: 2px solid #ffffff;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.site-title {
+  /* Hide or remove style */
+  display: none;
+}
