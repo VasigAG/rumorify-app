@@ -1,8 +1,5 @@
 🚀 Rumorify is a llm-driven idea-focused rumor platform for schools/uni with anonymous sharing, buzz scores, chain stats, and leaderboards.
 
-### The website:
-https://try-rumor.web.app/
-
 ### Why this?
 This entire thing was "vibe-coded". I just was curious and wanted to find out about the time and effort gap between converting an idea to a reality.
 Evidently, it is not so difficult.
